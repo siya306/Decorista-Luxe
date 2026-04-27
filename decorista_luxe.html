@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DECORISTA LUXE</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ivory: #FAF8F4;
+    --cream: #F5F0E8;
+    --warm-white: #FFFDF9;
+    --champagne: #EDE0C8;
+    --gold: #C9A96E;
+    --gold-dark: #A8874A;
+    --gold-light: #E8D5A8;
+    --muted-gold: #D4BC8A;
+    --text-dark: #2A2118;
+    --text-mid: #5C4E3A;
+    --text-light: #8C7B65;
+    --border: rgba(201,169,110,0.25);
+    --border-strong: rgba(201,169,110,0.5);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family:'Jost',sans-serif;
+    background: var(--ivory);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top:0; left:0; right:0; z-index:100;
+    background: rgba(250,248,244,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 60px;
+    display: flex; align-items:center; justify-content:space-between;
+    height: 72px;
+    transition: all 0.3s;
+  }
+  .nav-logo {
+    font-family:'Cormorant Garamond',serif;
+    font-size: 22px; font-weight:600; letter-spacing:4px;
+    color: var(--text-dark); text-decoration:none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display:flex; gap:36px; align-items:center; }
+  .nav-links a {
+    font-size:11px; font-weight:300; letter-spacing:2.5px;
+    text-transform:uppercase; text-decoration:none;
+    color: var(--text-mid); transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--text-dark); color: var(--champagne) !important;
+    padding: 9px 22px; letter-spacing:2px;
+  }
+  .nav-cta:hover { background: var(--gold-dark) !important; color: var(--warm-white) !important; }
+
+  /* HERO */
+  .hero {
+    margin-top:72px;
+    min-height: 92vh;
+    background: linear-gradient(135deg, #FAF8F4 0%, #F0E8D8 40%, #EDE0C8 100%);
+    display: flex; align-items:center;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg-text {
+    position:absolute; right:-40px; top:50%;
+    transform: translateY(-50%);
+    font-family:'Cormorant Garamond',serif;
+    font-size: 260px; font-weight:300; color: rgba(201,169,110,0.08);
+    letter-spacing:-10px; white-space:nowrap; pointer-events:none;
+    line-height:1; user-select:none;
+  }
+  .hero-content {
+    padding: 80px 60px; max-width: 680px; position:relative; z-index:2;
+  }
+  .hero-eyebrow {
+    font-size:10px; font-weight:400; letter-spacing:5px; text-transform:uppercase;
+    color: var(--gold); margin-bottom:24px;
+    display:flex; align-items:center; gap:16px;
+  }
+  .hero-eyebrow::after { content:''; flex:1; height:1px; background: var(--gold); max-width:60px; }
+  .hero-title {
+    font-family:'Cormorant Garamond',serif;
+    font-size:72px; font-weight:300; line-height:1.05;
+    color: var(--text-dark); margin-bottom:28px;
+    letter-spacing:-1px;
+  }
+  .hero-title em { font-style:italic; color: var(--gold-dark); }
+  .hero-sub {
+    font-size:13px; font-weight:300; letter-spacing:0.5px; line-height:2;
+    color: var(--text-mid); margin-bottom:48px; max-width:440px;
+  }
+  .hero-btns { display:flex; gap:20px; flex-wrap:wrap; }
+  .btn-primary {
+    background: var(--text-dark); color: var(--champagne);
+    padding:14px 36px; font-family:'Jost',sans-serif;
+    font-size:11px; font-weight:400; letter-spacing:3px; text-transform:uppercase;
+    border:none; cursor:pointer; transition: all 0.3s;
+    text-decoration:none; display:inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-dark); color: #FAF8F4; }
+  .btn-outline {
+    background:transparent; color: var(--text-dark);
+    padding:14px 36px; font-family:'Jost',sans-serif;
+    font-size:11px; font-weight:400; letter-spacing:3px; text-transform:uppercase;
+    border: 1px solid var(--border-strong); cursor:pointer; transition: all 0.3s;
+    text-decoration:none; display:inline-block;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-stats {
+    position:absolute; right:60px; bottom:60px;
+    display:flex; gap:48px; align-items:center;
+  }
+  .stat { text-align:center; }
+  .stat-num {
+    font-family:'Cormorant Garamond',serif; font-size:36px; font-weight:300;
+    color: var(--text-dark); display:block;
+  }
+  .stat-label {
+    font-size:9px; letter-spacing:3px; text-transform:uppercase;
+    color: var(--text-light); display:block; margin-top:4px;
+  }
+  .hero-divider { width:1px; height:50px; background:var(--border-strong); }
+
+  /* MARQUEE */
+  .marquee-wrap {
+    background: var(--text-dark);
+    padding: 14px 0; overflow:hidden;
+  }
+  .marquee-track {
+    display:flex; animation: marquee 35s linear infinite; width:max-content;
+  }
+  .marquee-track span {
+    font-size:9px; letter-spacing:4px; text-transform:uppercase;
+    color: var(--champagne); padding: 0 40px; white-space:nowrap;
+  }
+  .marquee-track .dot { color: var(--gold); padding:0 8px; }
+  @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+  /* SECTION COMMONS */
+  section { padding: 100px 60px; }
+  .section-label {
+    font-size:9px; letter-spacing:5px; text-transform:uppercase;
+    color: var(--gold); margin-bottom:16px;
+    display:flex; align-items:center; gap:16px;
+  }
+  .section-label::before { content:''; width:40px; height:1px; background:var(--gold); }
+  .section-title {
+    font-family:'Cormorant Garamond',serif;
+    font-size:48px; font-weight:300; color: var(--text-dark);
+    line-height:1.1; margin-bottom:20px;
+  }
+  .section-title em { font-style:italic; color:var(--gold-dark); }
+
+  /* CATEGORIES */
+  .categories { background: var(--warm-white); }
+  .cat-grid {
+    display:grid; grid-template-columns: repeat(4,1fr); gap:2px; margin-top:56px;
+  }
+  .cat-card {
+    position:relative; overflow:hidden; cursor:pointer;
+    aspect-ratio: 3/4;
+    background: var(--cream);
+    transition: all 0.4s;
+  }
+  .cat-card:first-child { grid-row: span 2; aspect-ratio:auto; min-height:400px; }
+  .cat-bg {
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Cormorant Garamond',serif;
+    font-size:80px; color: rgba(201,169,110,0.15); font-weight:300;
+    transition: transform 0.6s; user-select:none;
+  }
+  .cat-card:first-child .cat-bg { font-size:160px; }
+  .cat-card:hover .cat-bg { transform: scale(1.1); }
+  .cat-overlay {
+    position:absolute; inset:0;
+    background: linear-gradient(to top, rgba(42,33,24,0.72) 0%, rgba(42,33,24,0.1) 60%, transparent 100%);
+  }
+  .cat-info {
+    position:absolute; bottom:0; left:0; right:0; padding:28px 24px;
+  }
+  .cat-name {
+    font-family:'Cormorant Garamond',serif;
+    font-size:22px; font-weight:400; color:#FAF8F4; margin-bottom:4px;
+  }
+  .cat-card:first-child .cat-name { font-size:30px; }
+  .cat-count { font-size:10px; letter-spacing:2px; color: var(--champagne); }
+  .cat-arrow {
+    position:absolute; top:20px; right:20px;
+    width:36px; height:36px; border:1px solid rgba(250,248,244,0.3);
+    display:flex; align-items:center; justify-content:center;
+    color: #FAF8F4; font-size:16px;
+    opacity:0; transform: translateY(-8px); transition: all 0.3s;
+  }
+  .cat-card:hover .cat-arrow { opacity:1; transform: translateY(0); }
+
+  /* PALETTE STRIP */
+  .palette-strip {
+    display:flex; gap:0; margin-top:48px;
+    border: 1px solid var(--border);
+  }
+  .palette-item {
+    flex:1; padding:32px 24px; border-right:1px solid var(--border);
+    transition: all 0.3s; cursor:pointer;
+  }
+  .palette-item:last-child { border-right:none; }
+  .palette-item:hover { background: var(--cream); }
+  .palette-swatch { width:40px; height:40px; margin-bottom:16px; border-radius:50%; }
+  .palette-name { font-family:'Cormorant Garamond',serif; font-size:16px; font-weight:400; margin-bottom:4px; }
+  .palette-origin { font-size:10px; letter-spacing:2px; color: var(--text-light); }
+
+  /* FEATURED */
+  .featured { background: var(--cream); }
+  .featured-grid {
+    display:grid; grid-template-columns:2fr 1fr 1fr; grid-template-rows:300px 300px;
+    gap:2px; margin-top:56px;
+  }
+  .feat-card {
+    background:var(--ivory); position:relative; overflow:hidden; cursor:pointer;
+    display:flex; flex-direction:column; justify-content:flex-end;
+  }
+  .feat-card:first-child { grid-row:span 2; }
+  .feat-bg-art {
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-family:'Cormorant Garamond',serif; font-size:100px;
+    color:rgba(201,169,110,0.13); font-weight:300; transition: transform 0.5s;
+    user-select:none;
+  }
+  .feat-card:first-child .feat-bg-art { font-size:200px; }
+  .feat-card:hover .feat-bg-art { transform: scale(1.08); }
+  .feat-overlay {
+    position:absolute; inset:0;
+    background: linear-gradient(to top, rgba(42,33,24,0.72) 0%, transparent 55%);
+  }
+  .feat-info { position:relative; padding:24px 20px; }
+  .feat-tag { font-size:8px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:6px; }
+  .feat-name { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:300; color:#FAF8F4; margin-bottom:4px; }
+  .feat-card:first-child .feat-name { font-size:30px; }
+  .feat-price { font-size:12px; color:var(--champagne); }
+
+  /* AI SECTION */
+  .ai-section { background: var(--text-dark); color: var(--champagne); position:relative; overflow:hidden; }
+  .ai-bg-pattern {
+    position:absolute; inset:0; pointer-events:none;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(201,169,110,0.04) 60px, rgba(201,169,110,0.04) 61px),
+      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(201,169,110,0.04) 60px, rgba(201,169,110,0.04) 61px);
+  }
+  .ai-section .section-label { color: var(--muted-gold); }
+  .ai-section .section-label::before { background: var(--muted-gold); }
+  .ai-section .section-title { color: #FAF8F4; }
+  .ai-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; margin-top:56px; }
+  .ai-interface { background: rgba(255,255,255,0.04); border:1px solid rgba(201,169,110,0.2); overflow:hidden; }
+  .ai-header {
+    background: rgba(201,169,110,0.1); padding:16px 24px;
+    border-bottom:1px solid rgba(201,169,110,0.15);
+    display:flex; align-items:center; gap:12px;
+  }
+  .ai-dot { width:8px; height:8px; border-radius:50%; background:var(--gold); }
+  .ai-title-bar { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--muted-gold); }
+  .ai-body { padding:24px; }
+  .room-visual {
+    background: rgba(255,255,255,0.03); border:1px solid rgba(201,169,110,0.1);
+    height:180px; margin-bottom:20px; position:relative;
+    display:flex; align-items:center; justify-content:center; overflow:hidden;
+  }
+  .room-placeholder {
+    font-family:'Cormorant Garamond',serif;
+    font-size:36px; color:rgba(201,169,110,0.2); font-weight:300; transition: all 0.4s;
+    position:relative; z-index:2;
+  }
+  .room-grid-lines {
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(201,169,110,0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,169,110,0.07) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+  .ai-prompt-row { display:flex; gap:10px; margin-bottom:14px; }
+  .ai-input {
+    flex:1; background:rgba(255,255,255,0.06); border:1px solid rgba(201,169,110,0.2);
+    color: var(--champagne); padding:10px 14px; font-family:'Jost',sans-serif;
+    font-size:12px; outline:none; transition: border-color 0.2s;
+  }
+  .ai-input:focus { border-color: rgba(201,169,110,0.5); }
+  .ai-input::placeholder { color:rgba(201,169,110,0.4); }
+  .ai-btn {
+    background:var(--gold); color:var(--text-dark); border:none;
+    padding:10px 18px; cursor:pointer; font-size:12px; font-family:'Jost',sans-serif;
+    letter-spacing:1px; transition: background 0.2s; white-space:nowrap;
+  }
+  .ai-btn:hover { background:var(--gold-dark); color:#FAF8F4; }
+  .ai-tags { display:flex; flex-wrap:wrap; gap:8px; }
+  .ai-tag {
+    font-size:9px; letter-spacing:2px; text-transform:uppercase;
+    border:1px solid rgba(201,169,110,0.25); padding:6px 14px;
+    color:var(--muted-gold); cursor:pointer; transition: all 0.2s;
+  }
+  .ai-tag:hover { background:rgba(201,169,110,0.1); border-color:rgba(201,169,110,0.5); }
+  .ai-tag.active { background:rgba(201,169,110,0.15); border-color:var(--gold); color:var(--gold); }
+  .ai-feature { padding:24px 0; border-bottom:1px solid rgba(201,169,110,0.1); }
+  .ai-feature:last-child { border-bottom:none; }
+  .ai-feat-num { font-family:'Cormorant Garamond',serif; font-size:12px; color:var(--gold); margin-bottom:8px; }
+  .ai-feat-title { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:300; color:#FAF8F4; margin-bottom:8px; }
+  .ai-feat-desc { font-size:12px; line-height:1.9; color:rgba(237,224,200,0.6); }
+
+  /* AUCTION */
+  .auction { background: var(--cream); }
+  .auction-header { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:56px; }
+  .auction-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .auction-card {
+    background: var(--warm-white); border:1px solid var(--border);
+    overflow:hidden; transition: all 0.3s; cursor:pointer;
+  }
+  .auction-card:hover { border-color: var(--gold); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(201,169,110,0.15); }
+  .auction-img-wrap {
+    height:220px; background:var(--cream); position:relative;
+    display:flex; align-items:center; justify-content:center; overflow:hidden;
+  }
+  .auction-icon {
+    font-family:'Cormorant Garamond',serif;
+    font-size:72px; color:rgba(201,169,110,0.25); font-weight:300;
+    transition: transform 0.4s; user-select:none;
+  }
+  .auction-card:hover .auction-icon { transform: scale(1.12); }
+  .auction-badge {
+    position:absolute; top:14px; left:14px;
+    font-size:8px; letter-spacing:2.5px; text-transform:uppercase;
+    background: var(--text-dark); color:var(--champagne); padding:5px 12px;
+  }
+  .live-badge { background: #8B1A1A; }
+  .auction-body { padding:20px 20px 24px; }
+  .auction-origin { font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:6px; }
+  .auction-name { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:400; color:var(--text-dark); margin-bottom:4px; line-height:1.2; }
+  .auction-desc { font-size:11px; color:var(--text-light); line-height:1.8; margin-bottom:16px; }
+  .auction-footer { display:flex; justify-content:space-between; align-items:center; }
+  .bid-label { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--text-light); }
+  .bid-amount { font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:300; color:var(--text-dark); }
+  .auction-timer { font-size:11px; color:var(--text-light); letter-spacing:1px; display:flex; align-items:center; gap:6px; }
+  .timer-dot { width:6px; height:6px; border-radius:50%; background:#8B1A1A; animation: blink 1.5s infinite; }
+  .timer-dot.green { background:#2D6A4F; animation:none; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  /* PROVENANCE */
+  .provenance { background: var(--warm-white); }
+  .prov-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; margin-top:56px; }
+  .prov-map {
+    background:var(--cream); height:380px; position:relative; overflow:hidden;
+    display:flex; align-items:center; justify-content:center;
+    border:1px solid var(--border);
+  }
+  .prov-map-bg { font-family:'Cormorant Garamond',serif; font-size:120px; color:rgba(201,169,110,0.12); font-weight:300; user-select:none; }
+  .prov-pins { position:absolute; inset:0; }
+  .prov-pin {
+    position:absolute; width:10px; height:10px; border-radius:50%;
+    background:var(--gold); transform:translate(-50%,-50%);
+  }
+  .prov-pin::after {
+    content:''; position:absolute; inset:-4px; border-radius:50%;
+    border:1px solid rgba(201,169,110,0.5); animation: ping 2s infinite;
+  }
+  .prov-pin:nth-child(2)::after { animation-delay:0.5s; }
+  .prov-pin:nth-child(3)::after { animation-delay:1s; }
+  .prov-pin:nth-child(4)::after { animation-delay:1.5s; }
+  @keyframes ping { 0%{opacity:1;transform:scale(1)} 100%{opacity:0;transform:scale(2.5)} }
+  .prov-item { padding:24px 0; border-bottom:1px solid var(--border); display:flex; gap:20px; }
+  .prov-item:last-child { border-bottom:none; }
+  .prov-num { font-family:'Cormorant Garamond',serif; font-size:14px; color:var(--gold); min-width:24px; padding-top:2px; }
+  .prov-item-title { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:400; margin-bottom:4px; }
+  .prov-item-desc { font-size:11px; color:var(--text-light); line-height:1.9; }
+
+  /* SERVICES */
+  .services { background:var(--ivory); }
+  .serv-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:40px; margin-top:56px; }
+  .serv-item { text-align:center; }
+  .serv-icon {
+    width:64px; height:64px; border:1px solid var(--border-strong);
+    border-radius:50%; margin:0 auto 20px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Cormorant Garamond',serif; font-size:24px; color:var(--gold);
+    transition: all 0.3s;
+  }
+  .serv-item:hover .serv-icon { background: var(--champagne); border-color: var(--gold); }
+  .serv-title { font-family:'Cormorant Garamond',serif; font-size:18px; margin-bottom:10px; }
+  .serv-desc { font-size:11px; color:var(--text-light); line-height:1.9; }
+
+  /* MEMBERSHIP */
+  .membership {
+    background: linear-gradient(135deg, #C9A96E 0%, #A8874A 50%, #8B6914 100%);
+    padding:70px 60px; display:flex; justify-content:space-between; align-items:center;
+  }
+  .member-title { font-family:'Cormorant Garamond',serif; font-size:38px; font-weight:300; color:#FAF8F4; margin-bottom:8px; }
+  .member-sub { font-size:12px; letter-spacing:1px; color:rgba(255,255,255,0.75); }
+  .btn-white {
+    background:#FAF8F4; color:var(--text-dark); padding:16px 44px;
+    font-size:11px; font-weight:400; letter-spacing:3px; text-transform:uppercase;
+    border:none; cursor:pointer; transition: all 0.3s; white-space:nowrap;
+    font-family:'Jost',sans-serif;
+  }
+  .btn-white:hover { background:var(--text-dark); color:#FAF8F4; }
+
+  /* TESTIMONIALS */
+  .testimonials { background: var(--cream); }
+  .test-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:32px; margin-top:56px; }
+  .test-card { background:var(--warm-white); border:1px solid var(--border); padding:32px; }
+  .test-quote {
+    font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:300;
+    font-style:italic; color:var(--text-dark); line-height:1.7; margin-bottom:24px;
+  }
+  .test-stars { color:var(--gold); font-size:11px; letter-spacing:3px; margin-bottom:14px; }
+  .test-author { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--text-light); }
+  .test-origin { font-size:10px; color:var(--gold); letter-spacing:1px; margin-top:4px; }
+
+  /* FOOTER */
+  footer { background: var(--text-dark); color:var(--champagne); padding:80px 60px 40px; }
+  .foot-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:60px; margin-bottom:60px; }
+  .foot-brand { font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300; letter-spacing:4px; color:#FAF8F4; margin-bottom:16px; }
+  .foot-brand span { color:var(--gold); }
+  .foot-desc { font-size:12px; line-height:2; color:rgba(237,224,200,0.6); margin-bottom:24px; }
+  .foot-social { display:flex; gap:12px; }
+  .foot-social-btn {
+    width:36px; height:36px; border:1px solid rgba(201,169,110,0.25);
+    display:flex; align-items:center; justify-content:center;
+    font-size:12px; color:var(--muted-gold); cursor:pointer; transition: all 0.2s;
+    text-decoration:none; font-family:'Jost',sans-serif; font-weight:300;
+  }
+  .foot-social-btn:hover { background:rgba(201,169,110,0.1); border-color:rgba(201,169,110,0.5); }
+  .foot-col h4 { font-size:9px; letter-spacing:4px; text-transform:uppercase; color:var(--gold); margin-bottom:24px; }
+  .foot-col a { display:block; font-size:12px; color:rgba(237,224,200,0.6); text-decoration:none; margin-bottom:12px; transition: color 0.2s; }
+  .foot-col a:hover { color:#FAF8F4; }
+  .foot-bottom { border-top:1px solid rgba(201,169,110,0.15); padding-top:32px; display:flex; justify-content:space-between; align-items:center; }
+  .foot-copy { font-size:10px; letter-spacing:1px; color:rgba(237,224,200,0.4); }
+  .foot-origin { font-size:10px; letter-spacing:2px; color:rgba(201,169,110,0.5); }
+
+  /* SCROLL ANIMATION */
+  .fade-up { opacity:0; transform:translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .fade-up.visible { opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="#" class="nav-logo">DECORISTA <span>LUXE</span></a>
+  <div class="nav-links">
+    <a href="#collections">Collections</a>
+    <a href="#featured">Rare Finds</a>
+    <a href="#auction">Live Auction</a>
+    <a href="#ai-styling">AI Styling</a>
+    <a href="#provenance">Our Story</a>
+    <a href="#membership" class="nav-cta">Explore</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg-text">LUXE</div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">The Art of Living</div>
+    <h1 class="hero-title">Where Rarity<br>Meets <em>Refined</em><br>Living</h1>
+    <p class="hero-sub">Curated from the ateliers of Rajasthan, the workshops of Jaipur, and the finest estates worldwide — Decorista Luxe brings the world's most extraordinary pieces to your home.</p>
+    <div class="hero-btns">
+      <a href="#collections" class="btn-primary">Explore Collection</a>
+      <a href="#auction" class="btn-outline">Live Auction →</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-num">4,200+</span>
+      <span class="stat-label">Rare Pieces</span>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="stat">
+      <span class="stat-num">62</span>
+      <span class="stat-label">Countries</span>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="stat">
+      <span class="stat-num">25yr</span>
+      <span class="stat-label">Heritage</span>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>Antique Indian Murtis</span><span class="dot">◆</span>
+    <span>Royal Rajasthani Artifacts</span><span class="dot">◆</span>
+    <span>Ming Dynasty Porcelain</span><span class="dot">◆</span>
+    <span>Moroccan Hand-Carved Screens</span><span class="dot">◆</span>
+    <span>18th Century European Clocks</span><span class="dot">◆</span>
+    <span>Silk Route Textile Art</span><span class="dot">◆</span>
+    <span>Italian Marble Sculptures</span><span class="dot">◆</span>
+    <span>Punjab Phulkari Embroidery</span><span class="dot">◆</span>
+    <span>Antique Indian Murtis</span><span class="dot">◆</span>
+    <span>Royal Rajasthani Artifacts</span><span class="dot">◆</span>
+    <span>Ming Dynasty Porcelain</span><span class="dot">◆</span>
+    <span>Moroccan Hand-Carved Screens</span><span class="dot">◆</span>
+    <span>18th Century European Clocks</span><span class="dot">◆</span>
+    <span>Silk Route Textile Art</span><span class="dot">◆</span>
+    <span>Italian Marble Sculptures</span><span class="dot">◆</span>
+    <span>Punjab Phulkari Embroidery</span><span class="dot">◆</span>
+  </div>
+</div>
+
+<!-- COLLECTIONS -->
+<section class="categories" id="collections">
+  <div class="section-label fade-up">Browse by World</div>
+  <h2 class="section-title fade-up">Curated<br><em>Collections</em></h2>
+  <div class="cat-grid fade-up">
+    <div class="cat-card" style="background:#EDE0C8">
+      <div class="cat-bg">भारत</div>
+      <div class="cat-overlay"></div>
+      <div class="cat-arrow">→</div>
+      <div class="cat-info">
+        <div class="cat-name">Indian Heritage</div>
+        <div class="cat-count">840 pieces · Murtis, Artifacts & Handicrafts</div>
+      </div>
+    </div>
+    <div class="cat-card" style="background:#E8DFD0">
+      <div class="cat-bg">東</div>
+      <div class="cat-overlay"></div>
+      <div class="cat-arrow">→</div>
+      <div class="cat-info">
+        <div class="cat-name">Far East</div>
+        <div class="cat-count">620 pieces</div>
+      </div>
+    </div>
+    <div class="cat-card" style="background:#E4D8C8">
+      <div class="cat-bg">Eur</div>
+      <div class="cat-overlay"></div>
+      <div class="cat-arrow">→</div>
+      <div class="cat-info">
+        <div class="cat-name">European Estate</div>
+        <div class="cat-count">480 pieces</div>
+      </div>
+    </div>
+    <div class="cat-card" style="background:#DDD2C0">
+      <div class="cat-bg">مغرب</div>
+      <div class="cat-overlay"></div>
+      <div class="cat-arrow">→</div>
+      <div class="cat-info">
+        <div class="cat-name">Middle East & Africa</div>
+        <div class="cat-count">310 pieces</div>
+      </div>
+    </div>
+    <div class="cat-card" style="background:#D8CCBA">
+      <div class="cat-bg">✦</div>
+      <div class="cat-overlay"></div>
+      <div class="cat-arrow">→</div>
+      <div class="cat-info">
+        <div class="cat-name">Contemporary Luxe</div>
+        <div class="cat-count">260 pieces</div>
+      </div>
+    </div>
+  </div>
+  <div class="palette-strip fade-up">
+    <div class="palette-item">
+      <div class="palette-swatch" style="background:linear-gradient(135deg,#C9A96E,#8B6914)"></div>
+      <div class="palette-name">Gold Opulence</div>
+      <div class="palette-origin">India · Rajasthan</div>
+    </div>
+    <div class="palette-item">
+      <div class="palette-swatch" style="background:linear-gradient(135deg,#8B3A3A,#5C1A1A)"></div>
+      <div class="palette-name">Crimson Darbar</div>
+      <div class="palette-origin">India · Mughal Era</div>
+    </div>
+    <div class="palette-item">
+      <div class="palette-swatch" style="background:linear-gradient(135deg,#2D5A4F,#1A3D34)"></div>
+      <div class="palette-name">Jade Serenity</div>
+      <div class="palette-origin">China · Ming Dynasty</div>
+    </div>
+    <div class="palette-item">
+      <div class="palette-swatch" style="background:linear-gradient(135deg,#C4A882,#8B7355)"></div>
+      <div class="palette-name">Ivory & Sand</div>
+      <div class="palette-origin">Morocco · Marrakech</div>
+    </div>
+    <div class="palette-item">
+      <div class="palette-swatch" style="background:linear-gradient(135deg,#3A4A6B,#1F2D4A)"></div>
+      <div class="palette-name">Midnight Cobalt</div>
+      <div class="palette-origin">Europe · Versailles</div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED -->
+<section class="featured" id="featured">
+  <div class="section-label fade-up">This Season</div>
+  <h2 class="section-title fade-up">Iconic <em>Pieces</em></h2>
+  <div class="featured-grid fade-up">
+    <div class="feat-card" style="background:#EDE0C8">
+      <div class="feat-bg-art">ॐ</div>
+      <div class="feat-overlay"></div>
+      <div class="feat-info">
+        <div class="feat-tag">India · 19th Century · Panchaloha</div>
+        <div class="feat-name">Panchaloha Vishnu Idol — Grand Estate Edition</div>
+        <div class="feat-price">₹ 18,50,000 · Limited 1 of 1</div>
+      </div>
+    </div>
+    <div class="feat-card" style="background:#DDD0C0">
+      <div class="feat-bg-art">瓷</div>
+      <div class="feat-overlay"></div>
+      <div class="feat-info">
+        <div class="feat-tag">China · Qing Dynasty</div>
+        <div class="feat-name">Blue Willow Porcelain Vase</div>
+        <div class="feat-price">₹ 4,20,000</div>
+      </div>
+    </div>
+    <div class="feat-card" style="background:#D8CCBE">
+      <div class="feat-bg-art">⌛</div>
+      <div class="feat-overlay"></div>
+      <div class="feat-info">
+        <div class="feat-tag">France · 1820s</div>
+        <div class="feat-name">Louis XVI Gilt Mantel Clock</div>
+        <div class="feat-price">₹ 7,80,000</div>
+      </div>
+    </div>
+    <div class="feat-card" style="background:#D0C4B5">
+      <div class="feat-bg-art">✦</div>
+      <div class="feat-overlay"></div>
+      <div class="feat-info">
+        <div class="feat-tag">Morocco · Fez</div>
+        <div class="feat-name">Hand-Hammered Brass Lantern</div>
+        <div class="feat-price">₹ 1,40,000</div>
+      </div>
+    </div>
+    <div class="feat-card" style="background:#C8BAA8">
+      <div class="feat-bg-art">◈</div>
+      <div class="feat-overlay"></div>
+      <div class="feat-info">
+        <div class="feat-tag">Italy · Murano</div>
+        <div class="feat-name">Venetian Glass Chandelier</div>
+        <div class="feat-price">₹ 12,30,000</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI STYLING -->
+<section class="ai-section" id="ai-styling">
+  <div class="ai-bg-pattern"></div>
+  <div class="section-label fade-up">Intelligence Meets Aesthetics</div>
+  <h2 class="section-title fade-up">AI Home <em>Stylist</em></h2>
+  <div class="ai-grid fade-up">
+    <div class="ai-interface">
+      <div class="ai-header">
+        <div class="ai-dot"></div>
+        <span class="ai-title-bar">Decorista AI Styling Studio</span>
+      </div>
+      <div class="ai-body">
+        <div class="room-visual">
+          <div class="room-grid-lines"></div>
+          <span class="room-placeholder" id="roomPlaceholder">◈ Your Room ◈</span>
+        </div>
+        <div class="ai-prompt-row">
+          <input class="ai-input" id="styleInput" type="text" placeholder="Describe your space or vision..." />
+          <button class="ai-btn" onclick="triggerStyle()">Style →</button>
+        </div>
+        <div class="ai-tags">
+          <span class="ai-tag" onclick="selectTag(this,'Mughal Grandeur')">Mughal Grandeur</span>
+          <span class="ai-tag" onclick="selectTag(this,'Zen Minimalism')">Zen Minimalism</span>
+          <span class="ai-tag" onclick="selectTag(this,'Parisian Baroque')">Parisian Baroque</span>
+          <span class="ai-tag" onclick="selectTag(this,'Modern Fusion')">Modern Fusion</span>
+          <span class="ai-tag" onclick="selectTag(this,'Colonial Heritage')">Colonial Heritage</span>
+          <span class="ai-tag" onclick="selectTag(this,'Rajput Opulence')">Rajput Opulence</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="ai-feature">
+        <div class="ai-feat-num">01</div>
+        <div class="ai-feat-title">Upload Your Room</div>
+        <div class="ai-feat-desc">Simply photograph your space. Our AI reads every dimension, light source, and existing element to understand your room's unique character.</div>
+      </div>
+      <div class="ai-feature">
+        <div class="ai-feat-num">02</div>
+        <div class="ai-feat-title">Choose Your Aesthetic World</div>
+        <div class="ai-feat-desc">From Mughal court opulence to French chateau refinement — select from 60+ curated global styles or describe your own vision in natural language.</div>
+      </div>
+      <div class="ai-feature">
+        <div class="ai-feat-num">03</div>
+        <div class="ai-feat-title">Receive Bespoke Curation</div>
+        <div class="ai-feat-desc">Get a personalised selection of pieces from our 4,200+ catalogue, placed virtually in your room with precise spatial recommendations.</div>
+      </div>
+      <div class="ai-feature">
+        <div class="ai-feat-num">04</div>
+        <div class="ai-feat-title">Order & White Glove Delivery</div>
+        <div class="ai-feat-desc">Every curated piece ships with full provenance documentation and our signature white-glove installation service worldwide.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUCTION -->
+<section class="auction" id="auction">
+  <div class="auction-header">
+    <div>
+      <div class="section-label fade-up">Exclusive Access</div>
+      <h2 class="section-title fade-up">Live <em>Auction</em> House</h2>
+      <p style="font-size:13px;color:var(--text-light);margin-top:8px;max-width:480px;line-height:1.9" class="fade-up">Rare, one-of-a-kind pieces from Indian princely estates, heritage collections, and global antiquity — available exclusively to Decorista Luxe members.</p>
+    </div>
+    <a href="#" class="btn-outline">All Lots →</a>
+  </div>
+  <div class="auction-grid fade-up">
+    <div class="auction-card">
+      <div class="auction-img-wrap">
+        <span class="auction-icon">ॐ</span>
+        <div class="auction-badge live-badge">● Live Now</div>
+      </div>
+      <div class="auction-body">
+        <div class="auction-origin">Rajasthan · Jaipur · c. 1780</div>
+        <div class="auction-name">18th Century Bronze Nataraja — Royal Provenance</div>
+        <div class="auction-desc">Exceptional lost-wax cast bronze from a Rajput palace collection. Inscribed base. Complete documentation.</div>
+        <div class="auction-footer">
+          <div class="auction-bid">
+            <div class="bid-label">Current Bid</div>
+            <div class="bid-amount" id="liveBid">₹ 42,00,000</div>
+          </div>
+          <div class="auction-timer">
+            <div class="timer-dot"></div>
+            <span id="liveTimer">2h 18m left</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="auction-card">
+      <div class="auction-img-wrap">
+        <span class="auction-icon">瓷</span>
+        <div class="auction-badge">Upcoming</div>
+      </div>
+      <div class="auction-body">
+        <div class="auction-origin">China · Canton · c. 1820</div>
+        <div class="auction-name">Famille Rose Export Vase — Imperial Court</div>
+        <div class="auction-desc">Exceptional Cantonese enamel work with original seal marks. Documented via Sotheby's Hong Kong 1994.</div>
+        <div class="auction-footer">
+          <div class="auction-bid">
+            <div class="bid-label">Estimate</div>
+            <div class="bid-amount">₹ 18,00,000+</div>
+          </div>
+          <div class="auction-timer">
+            <div class="timer-dot green"></div>
+            Opens Jan 28
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="auction-card">
+      <div class="auction-img-wrap">
+        <span class="auction-icon">✦</span>
+        <div class="auction-badge">Preview</div>
+      </div>
+      <div class="auction-body">
+        <div class="auction-origin">Punjab · Amritsar · c. 1900</div>
+        <div class="auction-name">Phulkari Silk Tapestry — Museum Grade</div>
+        <div class="auction-desc">Pristine ancestral embroidery, never restored. Accompanied by certificate of authenticity from National Museum of India.</div>
+        <div class="auction-footer">
+          <div class="auction-bid">
+            <div class="bid-label">Estimate</div>
+            <div class="bid-amount">₹ 8,50,000+</div>
+          </div>
+          <div class="auction-timer">
+            <div class="timer-dot green"></div>
+            Opens Feb 4
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROVENANCE -->
+<section class="provenance" id="provenance">
+  <div class="section-label fade-up">Our Promise</div>
+  <h2 class="section-title fade-up">From Source<br>to <em>Sanctuary</em></h2>
+  <div class="prov-grid fade-up">
+    <div class="prov-map">
+      <span class="prov-map-bg">World</span>
+      <div class="prov-pins">
+        <div class="prov-pin" style="left:72%;top:28%"></div>
+        <div class="prov-pin" style="left:26%;top:42%"></div>
+        <div class="prov-pin" style="left:55%;top:48%"></div>
+        <div class="prov-pin" style="left:48%;top:20%"></div>
+      </div>
+    </div>
+    <div>
+      <div class="prov-item">
+        <div class="prov-num">01</div>
+        <div>
+          <div class="prov-item-title">Heritage Verification</div>
+          <div class="prov-item-desc">Every piece is authenticated by our in-house team of art historians and certified appraisers before entering our catalogue.</div>
+        </div>
+      </div>
+      <div class="prov-item">
+        <div class="prov-num">02</div>
+        <div>
+          <div class="prov-item-title">Complete Provenance Documentation</div>
+          <div class="prov-item-desc">Full chain of custody, scholarly literature references, and legal export clearances provided with every acquisition.</div>
+        </div>
+      </div>
+      <div class="prov-item">
+        <div class="prov-num">03</div>
+        <div>
+          <div class="prov-item-title">Climate-Controlled Shipping</div>
+          <div class="prov-item-desc">Our specialist fine arts logistics partners handle every shipment with museum-grade packing and real-time condition monitoring.</div>
+        </div>
+      </div>
+      <div class="prov-item">
+        <div class="prov-num">04</div>
+        <div>
+          <div class="prov-item-title">Lifetime Buy-Back Guarantee</div>
+          <div class="prov-item-desc">Decorista Luxe pieces are investments. We offer lifetime resale and buy-back services for all authenticated acquisitions.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-label fade-up">Voices of Our Patrons</div>
+  <h2 class="section-title fade-up">What Our <em>Collectors</em> Say</h2>
+  <div class="test-grid fade-up">
+    <div class="test-card">
+      <div class="test-stars">★ ★ ★ ★ ★</div>
+      <div class="test-quote">"The Nataraja we acquired through Decorista Luxe has become the soul of our home. Every guest asks about it. The provenance documentation was impeccable."</div>
+      <div class="test-author">Rajiv Malhotra</div>
+      <div class="test-origin">New Delhi · Private Collector</div>
+    </div>
+    <div class="test-card">
+      <div class="test-stars">★ ★ ★ ★ ★</div>
+      <div class="test-quote">"The AI styling tool completely transformed how I thought about my living space. Within 20 minutes I had a full room concept with pieces I would never have discovered myself."</div>
+      <div class="test-author">Priya Oberoi</div>
+      <div class="test-origin">Mumbai · Interior Architect</div>
+    </div>
+    <div class="test-card">
+      <div class="test-stars">★ ★ ★ ★ ★</div>
+      <div class="test-quote">"We furnished our entire London property through Decorista Luxe. The white-glove installation team was professional, and the quality is unlike anything we found in Europe."</div>
+      <div class="test-author">Vikram Nair</div>
+      <div class="test-origin">London · NRI Client</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-label fade-up">The Decorista Experience</div>
+  <h2 class="section-title fade-up">White Glove <em>Services</em></h2>
+  <div class="serv-grid fade-up">
+    <div class="serv-item">
+      <div class="serv-icon">✦</div>
+      <div class="serv-title">Personal Curator</div>
+      <div class="serv-desc">A dedicated art and decor advisor works with you one-on-one to build a collection that reflects your unique story.</div>
+    </div>
+    <div class="serv-item">
+      <div class="serv-icon">◈</div>
+      <div class="serv-title">AI Interior Design</div>
+      <div class="serv-desc">Upload your space and receive a fully rendered AI-styled room with curated Decorista pieces placed precisely to scale.</div>
+    </div>
+    <div class="serv-item">
+      <div class="serv-icon">⌛</div>
+      <div class="serv-title">Auction Advisory</div>
+      <div class="serv-desc">Our experts guide you through live and timed auctions, providing valuation intelligence and bidding strategy.</div>
+    </div>
+    <div class="serv-item">
+      <div class="serv-icon">◎</div>
+      <div class="serv-title">Global Installation</div>
+      <div class="serv-desc">White-glove delivery and professional installation anywhere in the world, with full site preparation and placement.</div>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBERSHIP -->
+<div class="membership" id="membership">
+  <div>
+    <div class="member-title">Become a Decorista Luxe Member</div>
+    <div class="member-sub">Priority auction access · Personal curation · Worldwide delivery · Exclusive previews</div>
+  </div>
+  <button class="btn-white" onclick="alert('Thank you for your interest! Our membership team will be in touch shortly.')">Request Membership</button>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-grid">
+    <div>
+      <div class="foot-brand">DECORISTA <span>LUXE</span></div>
+      <div class="foot-desc">Born in Ludhiana, Punjab. Now adorning the world's most extraordinary homes with pieces that carry history, soul, and unmatched artistry.</div>
+      <div class="foot-social">
+        <a href="#" class="foot-social-btn">in</a>
+        <a href="#" class="foot-social-btn">ig</a>
+        <a href="#" class="foot-social-btn">pi</a>
+        <a href="#" class="foot-social-btn">yt</a>
+      </div>
+    </div>
+    <div class="foot-col">
+      <h4>Explore</h4>
+      <a href="#">New Arrivals</a>
+      <a href="#">Indian Heritage</a>
+      <a href="#">Far East</a>
+      <a href="#">European Estate</a>
+      <a href="#">Contemporary Luxe</a>
+    </div>
+    <div class="foot-col">
+      <h4>Services</h4>
+      <a href="#">AI Styling Studio</a>
+      <a href="#">Live Auction</a>
+      <a href="#">Personal Curator</a>
+      <a href="#">White Glove Delivery</a>
+      <a href="#">Corporate Commissions</a>
+    </div>
+    <div class="foot-col">
+      <h4>Company</h4>
+      <a href="#">Our Story</a>
+      <a href="#">Ludhiana Flagship</a>
+      <a href="#">Authentication</a>
+      <a href="#">Press</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div class="foot-copy">© 2025 Decorista Luxe. All rights reserved. A legacy of Decorista, Ludhiana.</div>
+    <div class="foot-origin">Est. Ludhiana, Punjab, India</div>
+  </div>
+</footer>
+
+<script>
+  // Scroll fade-in
+  const fadeEls = document.querySelectorAll('.fade-up');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  fadeEls.forEach(el => observer.observe(el));
+
+  // AI Tag selection
+  function selectTag(el, style) {
+    document.querySelectorAll('.ai-tag').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('styleInput').value = style + ' style for my living room';
+    triggerStyle();
+  }
+
+  // AI Style trigger
+  function triggerStyle() {
+    const ph = document.getElementById('roomPlaceholder');
+    const styles = ['✦ Mughal Grandeur ✦', '◈ Zen Serenity ◈', '❋ Parisian Baroque ❋', '◎ Modern Luxe ◎', '⌘ Colonial Heritage ⌘'];
+    ph.style.opacity = '0';
+    setTimeout(() => {
+      ph.textContent = styles[Math.floor(Math.random() * styles.length)];
+      ph.style.opacity = '1';
+    }, 400);
+  }
+
+  // Live bid counter (demo)
+  let bidBase = 4200000;
+  setInterval(() => {
+    bidBase += Math.floor(Math.random() * 50000);
+    const formatted = '₹ ' + bidBase.toLocaleString('en-IN');
+    const el = document.getElementById('liveBid');
+    if(el) { el.textContent = formatted; el.style.color = '#8B1A1A'; setTimeout(()=>{el.style.color=''},800); }
+  }, 8000);
+
+  // Live countdown timer (demo)
+  let mins = 138, secs = 0;
+  setInterval(() => {
+    secs--;
+    if(secs < 0) { secs = 59; mins--; }
+    if(mins < 0) { mins = 0; secs = 0; }
+    const h = Math.floor(mins/60), m = mins%60;
+    const el = document.getElementById('liveTimer');
+    if(el) el.textContent = (h > 0 ? h+'h ' : '') + m + 'm ' + secs + 's left';
+  }, 1000);
+</script>
+</body>
+</html>
